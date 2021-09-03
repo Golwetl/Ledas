@@ -16,14 +16,10 @@ private:
   vector3d end;
   vector3d direct;
 public:
-  void SetVector(vector3d v1,vector3d v2)
+  Segment3D(vector3d v1, vector3d v2)
   {
     start = v1;
     end = v2;
-  }
-
-  void SetDirect()
-  {
     direct.x = end.x - start.x;
     direct.y = end.y - start.y;
     direct.z = end.z - start.z;
@@ -124,11 +120,7 @@ int main() {
   v2.x = 0; v2.y = 5; v2.z = 0;
   v3.x = -2; v3.y = 2; v3.z = 0;
   v4.x = 2; v4.y = 2; v4.z = 0;
-  Segment3D s1,s2;
-  s1.SetVector(v1,v2);
-  s1.SetDirect();
-  s2.SetVector(v3,v4);
-  s2.SetDirect();
+  Segment3D s1(v1,v2),s2(v3,v4);
 
   if ( CheckVectors(v1,v2,v3,v4) )
   {
