@@ -1,4 +1,6 @@
 #include <iostream>
+using namespace std;
+
 class vector3d 
 {
 public:
@@ -6,7 +8,6 @@ public:
   double y;
   double z;
 };
-using namespace std;
 
 class Segment3D
 {
@@ -46,9 +47,7 @@ public:
 
  bool ComparisonVector(vector3d a, vector3d b)
  {
-   if (a.x == b.x && a.y == b.y && a.z == b.z)
-    return true;
-   else return false;
+   return (a.x == b.x && a.y == b.y && a.z == b.z) ? true: false;
  }
 
 vector3d Intersect(Segment3D s1, Segment3D s2)
@@ -104,10 +103,7 @@ bool CheckIntersect(vector3d inters, Segment3D s1, Segment3D s2)
   vector3d st2 = s1.GetEnd();
   vector3d st3 = s2.GetStart();
   vector3d st4 = s2.GetEnd(); 
-  if (min(st1.x,st2.x) <= inters.x && inters.x <= max(st1.x,st2.x) && min(st1.y,st2.y) <= inters.y && inters.y <= max(st1.y,st2.y) && min(st1.z,st2.z) <= inters.z && inters.z <= max(st1.z,st2.z) ){
-    return true;
-  }
-  else { return false; } 
+  return (min(st1.x,st2.x) <= inters.x && inters.x <= max(st1.x,st2.x) && min(st1.y,st2.y) <= inters.y && inters.y <= max(st1.y,st2.y) && min(st1.z,st2.z) <= inters.z && inters.z <= max(st1.z,st2.z) ) ? true: false;  
 }
 
 //x - x1  y -y1   z -  z1 |
@@ -119,12 +115,8 @@ bool CheckVectors(vector3d v1, vector3d v2, vector3d v3,vector3d v4)
   double a1 =(x - x1)*((y2-y1)*(z3 - z1) - (y3 - y1)*(z2 - z1));
   double a2 =(y - y1) *((x2 - x1)*(z3 - z1)-(x3 - x1)*(z2 - z1));
   double a3 =(z -  z1)*((x2 - x1)*(y3 - y1)-(x3 - x1 )*(y2 - y1));
-  if (a1-a2+a3 == 0)
-   return true;
-   else return false;
+  return (a1-a2+a3 == 0) ? true: false;
 };
-
-using namespace std;
 
 int main() {
   vector3d v1,v2,v3,v4,ans;
@@ -133,17 +125,16 @@ int main() {
   v3.x = -2; v3.y = 2; v3.z = 0;
   v4.x = 2; v4.y = 2; v4.z = 0;
   Segment3D s1,s2;
-  bool res;
   s1.SetVector(v1,v2);
   s1.SetDirect();
   s2.SetVector(v3,v4);
   s2.SetDirect();
-  res = CheckVectors(v1,v2,v3,v4);
-  cout << res << " " << endl;
-  if ( res ){
+
+  if ( CheckVectors(v1,v2,v3,v4) )
+  {
     ans = Intersect(s1,s2);
-      if (CheckIntersect(ans,s1,s2) == true)
-        cout << ans.x << " " << ans.y << " " << ans.z << endl;
+    if (CheckIntersect(ans,s1,s2) == true)
+      cout << ans.x << " " << ans.y << " " << ans.z << endl;
   }
   return 0;
 }
