@@ -118,8 +118,8 @@ int main() {
   vector3d v1,v2,v3,v4,ans;
   v1.x = 0; v1.y = 0; v1.z = 0;
   v2.x = 0; v2.y = 5; v2.z = 0;
-  v3.x = -2; v3.y = 2; v3.z = 0;
-  v4.x = 2; v4.y = 2; v4.z = 0;
+  v3.x = 0; v3.y = 0; v3.z = 0;
+  v4.x = 0; v4.y = -5; v4.z = 0;
   Segment3D s1(v1,v2),s2(v3,v4);
 
   if ( CheckVectors(v1,v2,v3,v4) )
